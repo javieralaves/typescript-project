@@ -14,9 +14,15 @@ const SingleTodo = ({ todos, todo, setTodos }: Props) => {
   const handleDone = (id: number) => {
     setTodos(
       todos.map((todo) =>
+        // look for the todo with the clicked is and change the isDone to true
         todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
       )
     );
+  };
+
+  const handleDelete = (id: number) => {
+    // return a new array with all todos except the todo with the clicked id
+    setTodos(todos.filter((todo) => todo.id != id));
   };
 
   return (
@@ -31,7 +37,7 @@ const SingleTodo = ({ todos, todo, setTodos }: Props) => {
         <span className="icon">
           <AiFillEdit />
         </span>
-        <span className="icon">
+        <span className="icon" onClick={() => handleDelete(todo.id)}>
           <AiFillDelete />
         </span>
         <span className="icon" onClick={() => handleDone(todo.id)}>
