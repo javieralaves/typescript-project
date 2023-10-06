@@ -9,6 +9,21 @@ const App: React.FC = () => {
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // if todo exists
+    if (todo) {
+      // add todo to todos
+      setTodos([
+        ...todos,
+        {
+          id: Date.now(),
+          todo: todo,
+          isDone: false,
+        },
+      ]);
+      // empty the input field
+      setTodo("");
+    }
   };
 
   return (
